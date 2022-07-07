@@ -6,17 +6,16 @@ const breedName = process.argv[2];
 const fetchBreedDescription = function(breedName, cb) {
   request(url + breedName, (error, response, body) => {
     if (error || response.statusCode !== 200) {
-      console.log('Doh! Something is wrong with the URL.\n', error)
-      return;
+      return cb('Doh! Something is wrong with the URL.\n' + error, null);
     }
     const data = JSON.parse(body);
 
     if (data[0] && data[0].description) {
-      console.log(data[0].description)
+      cb(null, data[0].description)
     } else {
-      console.log('Doh! The requested breed was not found!')
+      cb('Doh! The requested breed was not found!', null)
     }
   })
 };
 
-
+module.exports = { fetchBreedDescription };
