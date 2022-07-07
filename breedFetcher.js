@@ -10,6 +10,11 @@ const breedName = process.argv[2];
       return;
     }
     const data = JSON.parse(body);
-    console.log(data[0]);
+
+    if (data[0] && data[0].description) {
+      console.log(data[0].description)
+    } else {
+      console.log('Doh! The requested breed was not found!')
+    }
   })
 
