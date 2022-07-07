@@ -1,7 +1,6 @@
 const request = require('request');
 
 const url = 'https://api.thecatapi.com/v1/breeds/search?q=';
-const breedName = process.argv[2];
 
 const fetchBreedDescription = function(breedName, cb) {
   request(url + breedName, (error, response, body) => {
@@ -13,7 +12,7 @@ const fetchBreedDescription = function(breedName, cb) {
     if (data[0] && data[0].description) {
       cb(null, data[0].description)
     } else {
-      cb('Doh! The requested breed was not found!', null)
+      cb('Doh! The requested breed was not found.', null)
     }
   })
 };
